@@ -11,18 +11,33 @@
     <origin xyz="0 0 0" rpy="0 0 0" />
   </joint>
 
-  <link name="lidar_link"> </link>
-  <joint name="lidar_joint" type="fixed">
+  <link name="velodyne_top"> </link>
+  <joint name="lidar_joint_top" type="fixed">
     <parent link="base_link" />
-    <child link="lidar_link" />
-    <origin xyz="0 0 0" rpy="0 0 0" />
+    <child link="velodyne_top" />
+    <origin xyz="-0.478 0.0125 1.952" rpy="0 0 3.14159265359" />
   </joint>
+
+  <link name="velodyne_left"> </link>
+  <joint name="lidar_joint_left" type="fixed">
+    <parent link="base_link" />
+    <child link="velodyne_left" />
+    <origin xyz="3.25 0.55 0.825" rpy="0 0 0" />
+  </joint>
+
+  <link name="velodyne_right"> </link>
+  <joint name="lidar_joint_right" type="fixed">
+    <parent link="base_link" />
+    <child link="velodyne_right" />
+    <origin xyz="3.25 -0.55 0.825" rpy="0 0 0" />
+  </joint>
+
 
   <link name="imu_link"> </link>
   <joint name="imu_joint" type="fixed">
     <parent link="chassis_link" />
     <child link="imu_link" />
-    <origin xyz="0 0 0" rpy="0 0 0" />
+    <origin xyz="-0.2 0 0" rpy="0 0 0" />
   </joint>
 
   <link name="laser_sensor_frame"> </link>
@@ -36,7 +51,7 @@
   <joint name="navsat_joint" type="fixed">
     <parent link="chassis_link" />
     <child link="navsat_link" />
-    <origin xyz="0 0 0" rpy="0 0 0" />
+    <origin xyz="0.5 0 1.952" rpy="0 0 0" />
   </joint>
 
 </robot>

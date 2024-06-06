@@ -6,12 +6,12 @@ struct VelodynePointXYZIRT
     PCL_ADD_POINT4D
     PCL_ADD_INTENSITY;
     uint16_t ring;
-    float time;
+    float timestamp;
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 } EIGEN_ALIGN16;
 POINT_CLOUD_REGISTER_POINT_STRUCT (VelodynePointXYZIRT,
     (float, x, x) (float, y, y) (float, z, z) (float, intensity, intensity)
-    (uint16_t, ring, ring) (float, time, time)
+    (uint16_t, ring, ring) (float, timestamp, timestamp)
 )
 
 struct OusterPointXYZIRT {
@@ -250,7 +250,7 @@ public:
                 dst.z = src.z;
                 dst.intensity = src.intensity;
                 dst.ring = src.ring;
-                dst.time = src.t * 1e-9f;
+                dst.timestamp = src.t * 1e-9f;
             }
         }
         else
@@ -262,7 +262,7 @@ public:
         // get timestamp
         cloudHeader = currentCloudMsg.header;
         timeScanCur = stamp2Sec(cloudHeader.stamp);
-        timeScanEnd = timeScanCur + laserCloudIn->points.back().time;
+        timeScanEnd = timeScanCur + laserCloudIn->points.back().timestamp;
     
         // remove Nan
         vector<int> indices;
@@ -299,13 +299,13 @@ public:
             }
         }
 
-        // check point time
+        // check point timestamp
         if (deskewFlag == 0)
         {
             deskewFlag = -1;
             for (auto &field : currentCloudMsg.fields)
             {
-                if (field.name == "time" || field.name == "t")
+                if (field.name == "timestamp" || field.name == "t")
                 {
                     deskewFlag = 1;
                     break;
@@ -608,7 +608,7 @@ public:
             if (rangeMat.at<float>(rowIdn, columnIdn) != FLT_MAX)
                 continue;
 
-            thisPoint = deskewPoint(&thisPoint, laserCloudIn->points[i].time);
+            thisPoint = deskewPoint(&thisPoint, laserCloudIn->points[i].timestamp);
 
             rangeMat.at<float>(rowIdn, columnIdn) = range;
 
