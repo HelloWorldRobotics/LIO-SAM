@@ -7,7 +7,7 @@ lio_sam:
   gpsTopic: "odometry/gpsz"                   # GPS odometry topic from navsat, see module_navsat.launch file
 
   # Frames
-  lidarFrame: "base_link"
+  lidarFrame: "velodyne"
   baselinkFrame: "base_link"
   odometryFrame: "odom"
   mapFrame: "map"
@@ -50,13 +50,13 @@ lio_sam:
 
 
   ## BUGGY
-  extrinsicTrans: [0.278, 0, -1.152]
-  extrinsicRot: [-1, 0, 0,
-                  0, -1, 0,
-                  0, 0, 1]
-  extrinsicRPY: [-1, 0, 0,
-                  0, -1, 0,
-                  0, 0, 1]
+  # extrinsicTrans: [0.278, 0, -1.152]
+  # extrinsicRot: [-1, 0, 0,
+  #                 0, -1, 0,
+  #                 0, 0, 1]
+  # extrinsicRPY: [-1, 0, 0,
+  #                 0, -1, 0,
+  #                 0, 0, 1]
 
   # LOAM feature threshold
   edgeThreshold: 1.0
