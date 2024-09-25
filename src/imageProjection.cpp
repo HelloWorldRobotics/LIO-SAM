@@ -329,6 +329,15 @@ public:
             stamp2Sec(imuQueue.back().header.stamp) < timeScanEnd)
         {
             RCLCPP_INFO(get_logger(), "Waiting for IMU data ...");
+
+            if (imuQueue.empty()) {
+                RCLCPP_INFO(get_logger(), "IMU queue is empty");
+            } else if (stamp2Sec(imuQueue.front().header.stamp) > timeScanCur) {
+                RCLCPP_INFO(get_logger(), "IMU data is ahead of current scan");
+            } else if (stamp2Sec(imuQueue.back().header.stamp) < timeScanEnd) {
+                RCLCPP_INFO(get_logger(), "IMU data is behind the end of current scan");
+            }
+
             return false;
         }
 

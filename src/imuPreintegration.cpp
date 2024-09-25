@@ -238,6 +238,7 @@ public:
             imuTopic, qos_imu,
             std::bind(&IMUPreintegration::imuHandler, this, std::placeholders::_1),
             imuOpt);
+        RCLCPP_INFO(get_logger(), "Subscribing to IMU topic: %s", imuTopic.c_str());
         subOdometry = create_subscription<nav_msgs::msg::Odometry>(
             "lio_sam/mapping/odometry_incremental", qos,
             std::bind(&IMUPreintegration::odometryHandler, this, std::placeholders::_1),

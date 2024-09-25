@@ -32,7 +32,7 @@
 #include <pcl/filters/filter.h>
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/filters/crop_box.h>
-#include <pcl_conversions/pcl_conversions.h>
+#include <pcl_conversions/pcl_conversions/pcl_conversions.h>
 
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2_ros/transform_listener.h>
@@ -156,7 +156,7 @@ public:
     {
         declare_parameter("pointCloudTopic", "points");
         get_parameter("pointCloudTopic", pointCloudTopic);
-        declare_parameter("imuTopic", "imu/data");
+        declare_parameter("imuTopic", "imu/");
         get_parameter("imuTopic", imuTopic);
         declare_parameter("odomTopic", "lio_sam/odometry/imu");
         get_parameter("odomTopic", odomTopic);
